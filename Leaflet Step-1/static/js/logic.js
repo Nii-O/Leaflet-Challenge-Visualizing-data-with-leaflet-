@@ -19,12 +19,14 @@ var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.ge
 
 d3.json(url).then(function(response) {
     
-   console.log(response.features[1].geometry.coordinates[2]);
+   //console.log(response.features[1].geometry.coordinates[2]);
 
    function styleData(feature){
        return{
         fillColor: markercolor(feature.geometry.coordinates[2]),
-        fillOpacity: 0.5,
+        fillOpacity: 1,
+        color: "#000000",
+        weight: 0.5,
         radius: markersize(feature.properties.mag),
         stroke: true
        };
@@ -32,28 +34,57 @@ d3.json(url).then(function(response) {
     //let quakePoints=response.features ;
 
  
-    function markercolor(depth){
+    // function markercolor(depth){
 
-        // Conditionals for country points
+    //     // Conditionals for country points
+    //     let color = '#2c99ea';
+    //     if (depth> 90) {
+    //         color = "#ea2c2c";
+    //     } else if (depth > 70) {
+    //         color = "#eaa92c";
+    //     } else if (depth > 50) {
+    //         color = "#d5ea2c";
+    //     } else if (depth > 30) {
+    //         color = "#92ea2c";
+    //     } else if (depth > 10) {
+    //         color = "#2ceabf";
+    //     } else if (depth > -3) {
+    //         color = "#2c99ea";
+    //     }
+    // }    
+
+    function markercolor(depth) {
         let color = '#2c99ea';
-        if (depth> 90) {
-            color = "#ea2c2c";
-        } else if (depth > 70) {
-            color = "#eaa92c";
-        } else if (depth > 50) {
-            color = "#d5ea2c";
-        } else if (depth > 30) {
-            color = "#92ea2c";
-        } else if (depth > 10) {
-            color = "#2ceabf";
-        } else if (depth > -3) {
-            color = "#2c99ea";
+        switch (true) {
+           case (depth > 90):
+                color = "#ea2c2c";
+                break;
+           case (depth > 70):
+                color = "#eaa92c";
+                break;
+           case (depth > 50):
+                color = "#d5ea2c";
+                break;
+           case (depth > 30):
+                color = "#92ea2c";
+                break;
+           case (depth > 10):
+                color = "#2ceabf";
+                break;
+           case (depth > -3):
+                color = "#2c99ea";
+                break;
+           default:
+                color = "#2c99ea";
+                break;
         }
-    }    
+        console.log(color);
+        return color;
+    }
 
     function markersize(mag) {
-        if (mag < 0){
-            return mag * 2;
+        if (mag > 0){
+            return mag * 5;
         }
         return 1;
         
@@ -85,7 +116,5 @@ d3.json(url).then(function(response) {
 });
 
 
-
-  
 
 
