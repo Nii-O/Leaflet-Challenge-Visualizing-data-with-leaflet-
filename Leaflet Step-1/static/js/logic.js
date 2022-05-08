@@ -84,7 +84,7 @@ d3.json(url).then(function(response) {
 
     function markersize(mag) {
         if (mag > 0){
-            return mag * 5;
+            return mag * 8;
         }
         return 1;
         
@@ -97,6 +97,24 @@ d3.json(url).then(function(response) {
     //     fillOpacity: 0.5,
     //     radius: response.features[i].properties[0]
     // }).bindPopup(`<h1>${response.features[i].properties[0]}</h1><hr><h3>points: ${response.features[i].properties[4]}</h3>`).addTo(myMap);
+
+    let legend = L.control({ position: "bottomleft" });
+
+    legend.onAdd = function() {
+    let div = L.DomUtil.create("div", "legend");
+    div.innerHTML += "<h4>Earthquake Depth</h4>";
+    div.innerHTML += '<i style="background: #ea2c2c"></i><span>90+</span><br>';
+    div.innerHTML += '<i style="background: #eaa92c"></i><span>70-90</span><br>';
+    div.innerHTML += '<i style="background: #d5ea2c"></i><span>50-70</span><br>';
+    div.innerHTML += '<i style="background: #92ea2c"></i><span>30-50</span><br>';
+    div.innerHTML += '<i style="background: #2ceabf"></i><span>10-30</span><br>';
+    div.innerHTML += '<i style="background: #2c99ea"></i><span><10</span><br>';
+    
+   
+    return div
+    };
+
+    legend.addTo(myMap);
 
 
  
@@ -114,7 +132,6 @@ d3.json(url).then(function(response) {
     console.log('nii')
     console.log(response);
 });
-
 
 
 
