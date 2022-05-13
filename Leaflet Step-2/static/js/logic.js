@@ -129,7 +129,7 @@ d3.json(url).then(function(response) {
 });
 
 
-d3.json(tectonicplates, function(platedata){
+d3.json(tectonicplates).then(function(platedata){
     L.geoJSON(platedata, {
         color: 'light brown',
         weight: 5
@@ -137,7 +137,7 @@ d3.json(tectonicplates, function(platedata){
     //plates.addTo(plates);
 
     console.log(platedata)
-});  
+}).addTo(myMap);  
 
 
 L.control.layers(baseMaps, overlayMaps, {
