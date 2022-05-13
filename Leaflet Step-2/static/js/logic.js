@@ -1,4 +1,4 @@
-let tectonicplates= "https://github.com/fraxen/tectonicplates/blob/master/GeoJSON/PB2002_steps.json";
+let tectonicplates= "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json";
 var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
   
