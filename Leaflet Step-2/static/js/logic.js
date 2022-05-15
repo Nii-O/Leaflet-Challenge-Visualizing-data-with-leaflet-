@@ -119,7 +119,7 @@ d3.json(url).then(function(response) {
        style: styleData,
     // Call pop-up for each feature
         onEachFeature: function(feature, layer) {
-            layer.bindPopup("<h2> Location: " + feature.properties.place + "</h2> <hr> <h1> Magnitude: " + feature.properties.mag+ "</h1>" );
+            layer.bindPopup("<h1> Location: " + feature.properties.place + "</h1> <hr> <h2> Magnitude: " + feature.properties.mag+ "</h2>  <h2> Depth: " + feature.geometry.coordinates[2] + "</h2>" );
         }
     }).addTo(earthquakes);
 
